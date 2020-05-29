@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --mode production",
-    "dev": "webpack-dev-server",
+    "build": "webpack --mode production --config config/webpack.config.js",
+    "dev": "webpack-dev-server --config config/webpack.config.js",
     "typecheck": "tsc -p . --noEmit"
   },
   "devDependencies": {
