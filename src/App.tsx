@@ -6,7 +6,7 @@ import {
   Link,
 } from 'react-router-dom';
 
-const App: React.FunctionComponent<>  = () => {
+const App: React.FunctionComponent  = () => {
   return (
     <React.Fragment>
       <Router>
