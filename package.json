@@ -6,11 +6,21 @@
   "scripts": {
     "build": "webpack --mode production --config config/webpack.config.js",
     "dev": "webpack-dev-server --config config/webpack.config.js",
-    "typecheck": "tsc -p . --noEmit"
+    "typecheck": "tsc -p . --noEmit",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint --fix . --ext .ts,.tsx"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.10.1",
+    "@typescript-eslint/parser": "^3.10.1",
     "css-loader": "^3.5.3",
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.6",
     "html-webpack-plugin": "^4.3.0",
+    "prettier": "^2.1.1",
     "style-loader": "^1.2.1",
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.3",
