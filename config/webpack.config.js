@@ -2,6 +2,9 @@ const path = require("path");
 const HTMLPlugin = require("html-webpack-plugin");
 const WorkerPlugin = require("worker-plugin");
 
+const PROJ_DIR = __dirname + "/../";
+const SRC_DIR = PROJ_DIR + "/src/";
+
 module.exports = {
   module: {
     rules: [
@@ -22,6 +25,10 @@ module.exports = {
   },
   resolve: {
     extensions: [".js", ".ts", ".tsx", ".json", ".mjs", ".wasm"],
+    alias: {
+      "@project": path.resolve(PROJ_DIR),
+      "@root": path.resolve(SRC_DIR),
+    },
   },
   plugins: [
     new HTMLPlugin({

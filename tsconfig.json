@@ -14,6 +14,11 @@
     "declarationMap": true,
     "newLine": "LF",
     "outDir": "./dist",
+    "baseUrl": ".",
+    "paths": {
+      "@project/*": ["./*"],
+      "@root/*": ["src/*"],
+    },
   },
   "include": [ "src/**/*" ],
   "exclude": [
