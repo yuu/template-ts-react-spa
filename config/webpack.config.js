@@ -33,7 +33,7 @@ module.exports = (webpackEnv) => {
     output: {
       publicPath: '',
       path: path.resolve(PROJ_DIR, 'dist'),
-      filename: '[name]-[chunkhash].js',
+      filename: '[name]-[contenthash:8].js',
       sourceMapFilename: '[name].js.map',
     },
     resolve: {
