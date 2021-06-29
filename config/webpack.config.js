@@ -1,9 +1,9 @@
-const path = require("path");
-const HTMLPlugin = require("html-webpack-plugin");
+const path = require('path');
+const HTMLPlugin = require('html-webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
-const PROJ_DIR = __dirname + "/../";
-const SRC_DIR = PROJ_DIR + "/src/";
+const PROJ_DIR = __dirname + '/../';
+const SRC_DIR = PROJ_DIR + '/src/';
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 
 module.exports = (webpackEnv) => {
@@ -18,7 +18,7 @@ module.exports = (webpackEnv) => {
         {
           test: /\.tsx?$/,
           use: {
-            loader: "ts-loader",
+            loader: 'ts-loader',
             options: {
               transpileOnly: true,
             },
@@ -26,21 +26,21 @@ module.exports = (webpackEnv) => {
         },
         {
           test: /\.css$/i,
-          use: ["style-loader", "css-loader"]
+          use: ['style-loader', 'css-loader']
         },
       ],
     },
     output: {
       publicPath: '',
       path: path.resolve(PROJ_DIR, 'dist'),
-      filename: "[name]-[chunkhash].js",
-      sourceMapFilename: "[name].js.map",
+      filename: '[name]-[chunkhash].js',
+      sourceMapFilename: '[name].js.map',
     },
     resolve: {
-      extensions: [".js", ".ts", ".tsx", ".json", ".mjs", ".wasm"],
+      extensions: ['.js', '.ts', '.tsx', '.json', '.mjs', '.wasm'],
       alias: {
-        "@project": path.resolve(PROJ_DIR),
-        "@root": path.resolve(SRC_DIR),
+        '@project': path.resolve(PROJ_DIR),
+        '@root': path.resolve(SRC_DIR),
       },
     },
     plugins: [
@@ -49,7 +49,7 @@ module.exports = (webpackEnv) => {
           {},
           {
             inject: true,
-            template: path.join(PROJ_DIR, "src/index.html"),
+            template: path.join(PROJ_DIR, 'src/index.html'),
           },
           isEnvProduction
           ? {
