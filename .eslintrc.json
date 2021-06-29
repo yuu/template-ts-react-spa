@@ -1,70 +1,73 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "plugin:node/recommended",
-    "prettier"
-  ],
-  "plugins": [
-    "node",
-    "prettier"
-  ],
-  "rules": {
-    "prettier/prettier": "error",
-    "block-scoped-var": "error",
-    "eqeqeq": "error",
-    "no-var": "error",
-    "prefer-const": "error",
-    "eol-last": "error",
-    "prefer-arrow-callback": "error",
-    "no-trailing-spaces": "error",
-    "quotes": ["warn", "single", { "avoidEscape": true }],
-    "no-restricted-properties": [
-      "error",
-      {
-        "object": "describe",
-        "property": "only"
-      },
-      {
-        "object": "it",
-        "property": "only"
-      }
-    ]
-  },
-  "overrides": [
-    {
-      "files": ["**/*.ts", "**/*.tsx"],
-      "parser": "@typescript-eslint/parser",
-      "extends": [
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+    ],
+    "extends": [
+        "airbnb-typescript",
+        "airbnb/hooks",
+        "eslint-config-airbnb/whitespace",
         "plugin:@typescript-eslint/recommended",
-        "plugin:react/recommended"
-      ],
-      "rules": {
-        "@typescript-eslint/no-non-null-assertion": "off",
-        "@typescript-eslint/no-use-before-define": "off",
-        "@typescript-eslint/no-warning-comments": "off",
-        "@typescript-eslint/no-empty-function": "off",
-        "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/explicit-module-boundary-types": "off",
-        "@typescript-eslint/ban-types": "off",
-        "@typescript-eslint/camelcase": "off",
-        "node/no-missing-import": "off",
-        "node/no-empty-function": "off",
-        "node/no-unsupported-features/es-syntax": "off",
-        "node/no-missing-require": "off",
-        "node/shebang": "off",
-        "no-dupe-class-members": "off",
-        "require-atomic-updates": "off",
-        "react/prop-types": "off"
-      },
-      "parserOptions": {
-        "ecmaVersion": 2015,
-        "sourceType": "module"
-      },
-      "settings": {
-        "react": {
-          "version": "latest"
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    ],
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    },
+    "rules": {
+        "no-else-return": [
+            2,
+            {
+                "allowElseIf": false
+            }
+        ],
+        "max-depth": [1, 3],
+        "no-multi-spaces": 2,
+        "no-var": "error",
+        "quotes": "off",
+        "@typescript-eslint/quotes": ["error", "single", "avoid-escape"],
+        "comma-spacing": "off",
+        "@typescript-eslint/comma-spacing": ["error", {"before": false, "after": true}],
+        "space-infix-ops": "off",
+        "comma-dangle": "off",
+        "semi": "off",
+        "@typescript-eslint/semi": ["error"],
+        "indent": "off",
+        "@typescript-eslint/indent": ["error", 4],
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4],
+        "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+        "react/prop-types": "off",
+        "object-curly-spacing": "off",
+        "object-curly-newline": "off",
+        "no-use-before-define": "off",
+        "@typescript-eslint/no-use-before-define": ["error"],
+        "@typescript-eslint/no-unused-vars": ["error"],
+        "import/prefer-default-export": "off",
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "js": "never",
+                "jsx": "never",
+                "ts": "never",
+                "tsx": "never"
+            }
+        ],
+        "no-param-reassign": [
+            "error",
+            {
+                "props": true,
+                "ignorePropertyModificationsFor": [
+                    "state"
+                ]
+            }
+        ]
+    },
+    "settings": {
+        "import/resolver": {
+            "webpack": {
+                "config": "./config/webpack.config.js"
+            }
         }
-      }
     }
-  ]
 }

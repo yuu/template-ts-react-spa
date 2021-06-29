@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {HashRouter as Router, Route, Switch, Link} from 'react-router-dom';
+import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 const App: React.FunctionComponent = () => {
   return (
