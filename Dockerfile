@@ -1,4 +1,4 @@
-FROM node:14.3.0-buster
+FROM node:14.19.0-buster
 MAINTAINER yuu
 
 ENV DEBIAN_FRONTEND noninteractive
