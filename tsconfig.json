@@ -4,29 +4,23 @@
     "module": "es2015",
     "moduleResolution": "node",
     "jsx": "react",
-    "lib": [
-      "ES2020",
-      "DOM",
-      "WebWorker",
-    ],
+    "lib": ["ES2020", "DOM", "WebWorker"],
     "strict": true,
     "noImplicitReturns": true,
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
     "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
+    "declaration": false,
+    "declarationMap": false,
     "newLine": "LF",
     "outDir": "./dist",
     "baseUrl": ".",
     "paths": {
-      "@project/*": ["./*"],
-      "@root/*": ["src/*"],
-    },
+      "@/*": ["src/*"],
+      "@root/*": ["./*"]
+    }
   },
-  "include": [ "src/**/*" ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

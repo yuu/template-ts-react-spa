@@ -4,6 +4,15 @@ services:
     build: .
     volumes:
       - .:/app
+      - node-modules:/app/node_modules
     ports:
       - 80:8080
       - 8080:8080
+    logging:
+      driver: json-file
+      options:
+        max-file: "1"
+        max-size: 3m
+
+volumes:
+  node-modules:
