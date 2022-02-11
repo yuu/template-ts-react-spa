@@ -1,24 +1,25 @@
-import React, { FC } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import React, { FC, Suspense } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { routes } from '@/pages';
 
 const App: FC = () => {
     return (
-        <Router>
-            <Switch>
-                <Route exact path="/">
-                    <div>
-                        <h1>Hello TypeScript</h1>
-                        <Link to="/about">to about</Link>
-                    </div>
-                </Route>
-                <Route path="/about">
-                    <div>
-                        <h1>About</h1>
-                        <Link to="/">go top</Link>
-                    </div>
-                </Route>
-            </Switch>
-        </Router>
+        <Suspense fallback="loading...">
+            <Router>
+                <Switch>
+                    {routes.map(({ exact, path, main: Component }) => (
+                        <Route
+                            key={path}
+                            exact={exact}
+                            path={path}
+                            render={() => <Component />}
+                        />
+                    ))}
+
+                    <Route path="*" render={() => <div>404</div>} />
+                </Switch>
+            </Router>
+        </Suspense>
     );
 };
 
