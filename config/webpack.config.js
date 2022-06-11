@@ -65,18 +65,72 @@ module.exports = (webpackEnv) => {
             splitChunks: {
                 chunks: 'all',
                 cacheGroups: {
-                    defaultVendors: {
-                        test: /[\\/]node_modules[\\/]/,
-                        priority: -10,
-                        reuseExistingChunk: true,
-                        name: 'vendor',
+                    default: false,
+                    vendors: false,
+                    framework: {
+                        name: 'framework',
+                        chunks: 'all',
+                        test: /[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types)[\\/]/,
+                        priority: 40,
                     },
-                    default: {
+                    lib: {
+                        test(module) {
+                            return (
+                                module.size() > 160000 &&
+                                /node_modules[/\\]/.test(module.identifier())
+                            );
+                        },
+                        name(module) {
+                            const rawRequest =
+                                module.rawRequest &&
+                                module.rawRequest.replace(
+                                    /^@(\w+)[/\\]/,
+                                    '$1-',
+                                );
+                            if (rawRequest) return rawRequest;
+
+                            const identifier = module.identifier();
+                            const trimmedIdentifier =
+                                /(?:^|[/\\])node_modules[/\\](.*)/.exec(
+                                    identifier,
+                                );
+                            const processedIdentifier =
+                                trimmedIdentifier &&
+                                trimmedIdentifier[1].replace(
+                                    /^@(\w+)[/\\]/,
+                                    '$1-',
+                                );
+
+                            return processedIdentifier || identifier;
+                        },
+                        priority: 30,
+                        minChunks: 1,
+                        reuseExistingChunk: true,
+                    },
+                    commons: {
+                        name: 'commons',
+                        chunks: 'all',
+                        minChunks: 1,
+                        priority: 20,
+                    },
+                    shared: {
+                        name(module, chunks) {
+                            return crypto
+                                .createHash('sha1')
+                                .update(
+                                    chunks.reduce((acc, chunk) => {
+                                        return acc + chunk.name;
+                                    }, ''),
+                                )
+                                .digest('base64')
+                                .replace(/\//g, '');
+                        },
+                        priority: 10,
                         minChunks: 2,
-                        priority: -20,
                         reuseExistingChunk: true,
                     },
                 },
+                maxInitialRequests: 20,
             },
         },
         cache: {
