@@ -25,6 +25,13 @@ module.exports = (webpackEnv) => {
                     test: /\.css$/i,
                     use: ['style-loader', 'css-loader'],
                 },
+                {
+                    test: /\.wasm.bin$/i,
+                    type: 'asset/resource',
+                    generator: {
+                        filename: '[hash][name]',
+                    },
+                },
             ],
         },
         output: {
@@ -146,6 +153,11 @@ module.exports = (webpackEnv) => {
             historyApiFallback: true,
             disableHostCheck: true,
             contentBase: path.resolve(PROJ_DIR, 'dist'),
+            mimeTypes: { 'application/wasm': ['wasm.bin'] },
+        },
+        externals: {
+            fs: true,
+            path: true,
         },
     };
 };
